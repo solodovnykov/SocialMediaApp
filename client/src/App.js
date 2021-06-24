@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { getPosts } from "./actions/posts";
+import Container from "./components/Container/Constainer";
+import TopBar from "./components/TopBar/TopBar";
+import ContainerFlex from "./components/ContainerFlex/ContainerFlex";
+import CardGrid from "./components/CardGrid/CardGrid";
+import CreateForm from "./components/CreateForm/CreateForm";
 
-function App() {
+const App = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getPosts());
+  }, [dispatch]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container>
+      <TopBar />
+      <ContainerFlex direction="row">
+        <CardGrid />
+        <CreateForm />
+      </ContainerFlex>
+    </Container>
   );
-}
+};
 
 export default App;
