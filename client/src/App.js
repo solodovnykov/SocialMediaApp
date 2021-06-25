@@ -8,11 +8,14 @@ import CardGrid from "./components/CardGrid/CardGrid";
 import CreateForm from "./components/CreateForm/CreateForm";
 
 const App = () => {
-  const [currentId, setCurrentId] = useState(null);
+  const [currentId, setCurrentId] = useState(0);
   const dispatch = useDispatch();
+
   useEffect(() => {
-    dispatch(getPosts());
-  }, [dispatch]);
+    setTimeout(() => {
+      dispatch(getPosts());
+    }, 1);
+  }, [currentId, dispatch]);
 
   return (
     <Container>

@@ -21,21 +21,32 @@ const CreateForm = ({ currentId, setCurrentId }) => {
     if (post) setPostData(post);
   }, [post]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (currentId) {
-      dispatch(updatePost(currentId, postData));
-    } else {
+    if (currentId === 0) {
       dispatch(createPost(postData));
+      clear();
+    } else {
+      dispatch(updatePost(currentId, postData));
+      clear();
     }
   };
 
-  const clear = () => {};
+  const clear = () => {
+    setCurrentId(0);
+    setPostData({
+      creator: "",
+      title: "",
+      message: "",
+      tags: "",
+      selectedFile: "",
+    });
+  };
 
   return (
     <form className="create-form" onSubmit={handleSubmit}>
-      <div className="form-title">Create New Post</div>
+      <div className="form-title">{currentId ? "Edit" : "Create"} New Post</div>
       <div className="form-field">
         <div className="form-field-title">Creator</div>
         <input
@@ -105,8 +116,10 @@ const CreateForm = ({ currentId, setCurrentId }) => {
       </div>
 
       <div className="form-buttons">
-        <button className="form-button blue-btn">Submit</button>
-        <button className="form-button red-btn" onClick={clear}>
+        <button className="form-button blue-btn" type="submit">
+          Submit
+        </button>
+        <button className="form-button red-btn" type="button" onClick={clear}>
           Clear
         </button>
       </div>

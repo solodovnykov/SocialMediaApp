@@ -126,12 +126,16 @@
         }
       }
 
-      .card-delete:hover {
-        fill: #ef4646;
-        transition: all 0.1s ease;
-        cursor: pointer;
-        .delete-stroke {
-          stroke: #ef4646;
+      .card-delete-btn {
+        border: none;
+        background: none;
+        .card-delete:hover {
+          fill: #ef4646;
+          transition: all 0.1s ease;
+          cursor: pointer;
+          .delete-stroke {
+            stroke: #ef4646;
+          }
         }
       }
     }
