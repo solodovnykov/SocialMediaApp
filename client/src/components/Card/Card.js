@@ -1,37 +1,32 @@
 import React from "react";
 import "./card.scss";
-import Background from "../../images/DesertMin.png";
 
-const Card = () => {
+const Card = ({ post, setCurrentId }) => {
   return (
     <div className="card">
       <div
         className="card-image"
         style={{
-          backgroundImage: `url(${Background})`,
+          backgroundImage: `url(${post.selectedFile})`,
         }}
       >
         <div className="card-image-header">
-          <div className="card-image-name">Anton</div>
-          <div className="card-image-settings">
+          <div className="card-image-name">{post.creator}</div>
+          <button className="card-image-settings" onClick={() => setCurrentId(post._id)}>
             <div className="dot" />
             <div className="dot" />
             <div className="dot" />
-          </div>
+          </button>
         </div>
       </div>
       <div className="card-body">
-        <div className="card-title">Test title</div>
+        <div className="card-title">{post.title}</div>
         <div className="card-tag-list">
-          <div className="card-tag">tag</div>
-          <div className="card-tag">tag</div>
-          <div className="card-tag">tag</div>
+          {post.tags.map((tag) => (
+            <div className="card-tag">{tag}</div>
+          ))}
         </div>
-        <div className="card-text">
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of ty
-        </div>
+        <div className="card-text">{post.message}</div>
         <div className="card-line" />
 
         <div className="card-footer">
@@ -51,7 +46,7 @@ const Card = () => {
                 strokeLinejoin="round"
               />
             </svg>
-            <div className="like-count">10</div>
+            <div className="like-count">{post.likeCount}</div>
           </div>
 
           <svg

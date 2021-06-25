@@ -20,7 +20,7 @@
 
     &::after {
       content: "";
-      height: 180px;
+      height: 160px;
       width: 100%;
       background: linear-gradient(
         180deg,
@@ -46,6 +46,10 @@
         flex-direction: row;
         width: 18px;
         gap: 3px;
+        border: none;
+        background: none;
+        padding: 0;
+        cursor: pointer;
 
         .dot {
           width: 4px;
@@ -71,6 +75,7 @@
     .card-tag-list {
       display: flex;
       flex-direction: row;
+      flex-wrap: wrap;
       gap: 10px;
       margin: 10px 0 0 0;
       .card-tag {

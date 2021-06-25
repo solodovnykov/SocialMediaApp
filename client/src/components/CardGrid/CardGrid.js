@@ -3,17 +3,18 @@ import { useSelector } from "react-redux";
 import "./cardGrid.scss";
 import Card from "../../components/Card/Card";
 
-const CardGrid = () => {
+const CardGrid = ({ setCurrentId }) => {
   const posts = useSelector((state) => state.posts);
-  console.log(posts);
+
   return (
     <div className="card-grid">
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
+      {!posts.length ? (
+        <div>Loading...</div>
+      ) : (
+        posts.map((post) => (
+          <Card key={post._id} post={post} setCurrentId={setCurrentId} />
+        ))
+      )}
     </div>
   );
 };
